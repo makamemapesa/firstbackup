@@ -1,3 +1,77 @@
-<!-- <p>personnel works!</p> -->
+<!-- <p>personnel works!</p>
 <h3>Personnel</h3>
-<p>View and manage firefighter and staff information.</p>
+<p>View and manage firefighter and staff information.</p> -->
+
+<div class="container">
+    <router-outlet></router-outlet>
+  <h2 class="my-4">Driver Management</h2>
+
+  <form (submit)="$event.preventDefault(); addDriver()" class="row g-3">
+    <div class="col-md-4">
+      <input type="text" class="form-control" placeholder="First Name" [(ngModel)]="newDriver.firstName" name="firstName">
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" placeholder="Middle Name" [(ngModel)]="newDriver.middleName" name="middleName">
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]="newDriver.lastName" name="lastName">
+    </div>
+    <div class="col-md-6">
+      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newDriver.email" name="email">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)]="newDriver.phoneNumber" name="phoneNumber">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="License Number" [(ngModel)]="newDriver.licenseNumber" name="licenseNumber">
+    </div>
+    <div class="col-md-6">
+      <select class="form-select" [(ngModel)]="newDriver.status" name="status">
+        <option value="ACTIVE">Active</option>
+        <option value="INACTIVE">Inactive</option>
+        <option value="ON_PROGRESS">On Duty</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-success w-100">Add Driver</button>
+    </div>
+  </form>
+
+  <hr class="my-4">
+
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>License</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of drivers; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ driver.firstName }} {{ driver.middleName }} {{ driver.lastName }}</td>
+        <td>{{ driver.email }}</td>
+        <td>{{ driver.phoneNumber }}</td>
+        <td>{{ driver.licenseNumber }}</td>
+        <td>
+          <span class="badge"
+            [ngClass]="{
+              'bg-success': driver.status === 'ACTIVE',
+              'bg-warning text-dark': driver.status === 'ON_PROGRESS',
+              'bg-secondary': driver.status === 'INACTIVE'
+            }">
+            {{ driver.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteDriver(driver.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

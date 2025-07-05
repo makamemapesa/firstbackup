@@ -16,7 +16,7 @@ import { Dispatcher } from './pages/dispatcher/dispatcher';
 import { Overview } from './pages/dispatcher/overview/overview';  
 import { Emergencies } from './pages/dispatcher/emergencies/emergencies';
 import { Vehicles } from './pages/dispatcher/vehicles/vehicles';        
-import { Personnel } from './pages/dispatcher/personnel/personnel';
+import { PersonnelComponent } from './pages/dispatcher/personnel/personnel';
 import { Reports } from './pages/dispatcher/reports/reports';
 
 export const routes: Routes = [
@@ -31,7 +31,7 @@ export const routes: Routes = [
       { path: 'overview', component: Overview },
       { path: 'emergencies', component: Emergencies },
       { path: 'vehicles', component: Vehicles },
-      { path: 'personnel', component: Personnel },
+      { path: 'personnel', component: PersonnelComponent },
       { path: 'reports', component: Reports },
       { path: '', redirectTo: 'overview', pathMatch: 'full' }
     ]
